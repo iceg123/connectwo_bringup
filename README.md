@@ -5,3 +5,4 @@ ros melodic
 turtlebot3
 gmapping
 rplidar
+rosserial
