@@ -8,7 +8,7 @@
   <include file="$(find connectwo_bringup)/launch/connectwo_keyboard.launch">
   </include>
 
-  <include file="$(find connectwo_bringup)/launch/rplidar.launch">
+  <include file="$(find connectwo_bringup)/launch/connectwo_rplidar.launch">
   </include>
 
   <!-- TurtleBot3 -->
