@@ -7,3 +7,4 @@ gmapping
 rplidar
 rosserial
 rviz_imu_plugin
+teleop_twist_keyboard
