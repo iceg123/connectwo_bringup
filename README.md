@@ -6,3 +6,4 @@ turtlebot3
 gmapping
 rplidar
 rosserial
+rviz_imu_plugin
