@@ -61,7 +61,7 @@ Visualization Manager:
         Acc. vector color: 255; 255; 0
         Acc. vector scale: 1
         Derotate acceleration: false
-        Enable acceleration: true
+        Enable acceleration: false
       Axes properties:
         Axes scale: 1
         Enable axes: true
@@ -70,20 +70,20 @@ Visualization Manager:
         Box color: 255; 128; 0
         Enable box: true
         x_scale: 1
-        y_scale: 0.699999988079071
+        y_scale: 1
         z_scale: 0.5
       Class: rviz_imu_plugin/Imu
       Enabled: true
       Name: Imu
-      Topic: /IMU
+      Topic: /imu
       Unreliable: false
       Value: true
-      fixed_frame_orientation: true
+      fixed_frame_orientation: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: map
+    Fixed Frame: imu_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -107,25 +107,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 6.292667388916016
+      Distance: 10.196219444274902
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.7025604844093323
-        Y: 0.8657393455505371
-        Z: 0.2575122117996216
+        X: 0.20581600069999695
+        Y: 0.6754619479179382
+        Z: 1.4325342178344727
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.31979578733444214
+      Pitch: 0.9197956919670105
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.630390465259552
+      Yaw: 1.868574619293213
     Saved: ~
 Window Geometry:
   Displays:
@@ -143,5 +143,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1267
-  X: 67
-  Y: 30
+  X: 557
+  Y: 27
