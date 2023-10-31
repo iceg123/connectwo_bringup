@@ -2,7 +2,8 @@
 
   <!-- Arguments -->
   <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
-  <arg name="set_lidar_frame_id" default="base_scan"/>
+  <!-- <arg name="set_lidar_frame_id" default="base_scan"/> -->
+  
 
   <!-- TurtleBot3 -->
   <include file="$(find connectwo_bringup)/launch/connectwo_remote.launch">
@@ -10,10 +11,12 @@
   </include>
 
   <include file="$(find connectwo_bringup)/launch/connectwo_rplidar.launch"> 
-    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+    <!-- <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/> -->
   </include>
 
   <include file="$(find connectwo_bringup)/launch/connectwo_core.launch"> 
   </include>
+
+  
 
 </launch>
