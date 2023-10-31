@@ -7,30 +7,37 @@ import rospy
 import tf
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Point, Pose, Quaternion, Twist, Vector3
+
 rospy.init_node('odometry_publisher')
 
 odom_pub = rospy.Publisher("odom", Odometry, queue_size=50)
 odom_broadcaster = tf.TransformBroadcaster()
 
-# cmd_vel_sub = rospy.Subscriber("cmd_vel", Vector3, queue_size=50)
-# cmd_vel_sub = rospy.Subscriber("cmd_vel", Vector3, "struct")
-# cmd_data = receive(cmd_vel_sub)
 def cmd_vel_callback(data):
-    global vx
-    vx = data.linear.x
+    global vx, vth
+    vx = data.linear.x #이동값
+    # vth = data.angular.z #회전값
+
+# def odom_callback(data):
+#     global vth
+#     vth = data.twist.twist.angular.z
+
+
+cmd_vel_sub = rospy.Subscriber("cmd_vel", Twist, cmd_vel_callback)
+
+# odom_sub = rospy.Subscriber("odom", Twist, odom_callback)
 
 x = 0.0
 y = 0.0
 th = 0.0
-# vx = 0.1
+vx = 0.0  # Set an initial value for vx
 vy = 0.0
 vth = 0.0
 
 current_time = rospy.Time.now()
 last_time = rospy.Time.now()
 
-
-r = rospy.Rate(60.0)
+# r = rospy.Rate(144.0)
 while not rospy.is_shutdown():
     current_time = rospy.Time.now()
 
@@ -44,10 +51,10 @@ while not rospy.is_shutdown():
     y += delta_y
     th += delta_th
 
-    # since all odometry is 6DOF we'll need a quaternion created from yaw
+    # since all odometry is 6DOF, create a quaternion from yaw
     odom_quat = tf.transformations.quaternion_from_euler(0, 0, th)
 
-    # first, we'll publish the transform over tf
+    # publish the transform over tf
     odom_broadcaster.sendTransform(
         (x, y, 0.),
         odom_quat,
@@ -56,7 +63,7 @@ while not rospy.is_shutdown():
         "odom"
     )
 
-    # next, we'll publish the odometry message over ROS
+    # publish the odometry message over ROS
     odom = Odometry()
     odom.header.stamp = current_time
     odom.header.frame_id = "odom"
