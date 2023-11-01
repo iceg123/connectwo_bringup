@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 import math
 from math import sin, cos, pi
 
@@ -10,22 +10,22 @@ from geometry_msgs.msg import Point, Pose, Quaternion, Twist, Vector3
 
 rospy.init_node('odometry_publisher')
 
-odom_pub = rospy.Publisher("odom", Odometry, queue_size=50)
+odom_pub = rospy.Publisher("fake_odom", Odometry, queue_size=50) 
 odom_broadcaster = tf.TransformBroadcaster()
 
-def cmd_vel_callback(data):
+def cmd_vel_callback(data): #이동값을 cmd_vel에서 받아오는 함수
     global vx, vth
     vx = data.linear.x #이동값
-    # vth = data.angular.z #회전값
+    # vth = data.angular.z #회전값 (작동안함)
 
-# def odom_callback(data):
-#     global vth
-#     vth = data.twist.twist.angular.z
+def odom_callback(data): #회전값을 odom에서 받아오는 함수
+    global vth
+    vth = data.twist.twist.angular.z
 
 
-cmd_vel_sub = rospy.Subscriber("cmd_vel", Twist, cmd_vel_callback)
+cmd_vel_sub = rospy.Subscriber("cmd_vel", Twist, cmd_vel_callback) #cmd_vel값을 subscriber로 받아오는 구문
 
-# odom_sub = rospy.Subscriber("odom", Twist, odom_callback)
+odom_sub = rospy.Subscriber("odom", Twist, odom_callback) #odom값을 subscriber로 받아오는 구문
 
 x = 0.0
 y = 0.0
@@ -62,7 +62,7 @@ while not rospy.is_shutdown():
         "base_footprint",
         "odom"
     )
-
+    
     # publish the odometry message over ROS
     odom = Odometry()
     odom.header.stamp = current_time
