@@ -22,10 +22,16 @@ def odom_callback(data): #회전값을 odom에서 받아오는 함수
     global vth
     vth = data.twist.twist.angular.z
 
+def odom_orientation(data): #회전값을 odom에서 받아오는 함수
+    global orientation_z, orientation_w
+    orientation_z = data.pose.pose.orientation.z
+    orientation_w = data.pose.pose.orientation.w
 
 cmd_vel_sub = rospy.Subscriber("cmd_vel", Twist, cmd_vel_callback) #cmd_vel값을 subscriber로 받아오는 구문
 
-odom_sub = rospy.Subscriber("odom", Twist, odom_callback) #odom값을 subscriber로 받아오는 구문
+odom_sub = rospy.Subscriber("odom", Pose, odom_callback) #odom값을 subscriber로 받아오는 구문
+
+odom_orientation_sub = rospy.Subscriber("odom", Odometry, odom_orientation) #odom값을 subscriber로 받아오는 구문
 
 x = 0.0
 y = 0.0
@@ -33,6 +39,9 @@ th = 0.0
 vx = 0.0  # Set an initial value for vx
 vy = 0.0
 vth = 0.0
+
+orientation_z= 0.0
+orientation_w = 0.0
 
 current_time = rospy.Time.now()
 last_time = rospy.Time.now()
@@ -69,7 +78,7 @@ while not rospy.is_shutdown():
     odom.header.frame_id = "odom"
 
     # set the position
-    odom.pose.pose = Pose(Point(x, y, 0.), Quaternion(*odom_quat))
+    odom.pose.pose = Pose(Point(x, y, 0.), Quaternion(0, 0, orientation_z, orientation_w))
 
     # set the velocity
     odom.child_frame_id = "base_footprint"
