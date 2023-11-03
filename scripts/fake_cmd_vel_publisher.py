@@ -15,7 +15,7 @@ def cmd_vel_callback(data): #이동값을 cmd_vel에서 받아오는 함수
     angular_z = data.angular.z #회전값
 
 
-cmd_vel_sub = rospy.Subscriber("cmd_vel", Twist, cmd_vel_callback) #cmd_vel값을 subscriber로 받아오는 구문
+cmd_vel_sub = rospy.Subscriber("fake_cmd_vel", Twist, cmd_vel_callback) #cmd_vel값을 subscriber로 받아오는 구문
 
 vx = 0.0  
 
