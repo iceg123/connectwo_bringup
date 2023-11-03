@@ -1,4 +1,0 @@
-<launch>
-  <node pkg="connectwo_bringup" type="aa.py" name="aa" output="screen"/>
-  <!-- <node pkg="teleop_twist_keyboard" type="aa.py" name="aa" output="screen"/> -->
-</launch>

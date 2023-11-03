@@ -2,7 +2,7 @@
   <!-- Arguments -->
   <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="map_file" default="$(find connectwo_bringup)/maps/fifty_map.yaml"/>
+  <arg name="map_file" default="$(find connectwo_bringup)/maps/fifty_2_map.yaml"/>
   <arg name="move_forward_only" default="false"/>
   <arg name="move_base_topic" default="/move_base" />
 
@@ -23,7 +23,9 @@
     <arg name="move_forward_only" value="$(arg move_forward_only)"/>
   </include>
 
-  <include file="$(find connectwo_bringup)/launch/connectwo_aa.launch"/>
+  <include file="$(find connectwo_bringup)/launch/connectwo_fake_odom.launch"/>
+  
+  <include file="$(find connectwo_bringup)/launch/connectwo_ba.launch"/>
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
