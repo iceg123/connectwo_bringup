@@ -11,7 +11,7 @@ class TestPub(object):
         self.ang_vel = rospy.get_param('~ang_vel', 1.5757)
 
         self._cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
-        # self._scan_sub = rospy.Subscriber('scan', LaserScan, self.callBack)
+        self._scan_sub = rospy.Subscriber('fake_cmd_vel', Twist, self.callBack)
 
     def callBack(self, data):
         # scan 데이터 처리
