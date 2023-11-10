@@ -5,15 +5,11 @@ from geometry_msgs.msg import Twist
 
 def cmd_vel_callback(data):
     # 수신한 메시지에서 angular.z 값을 n배로 증폭
-    data.angular.z *= 2.0
-    data.angular.z = round(data.angular.z, 2)
-
-    # if abs(data.angular.z) == 1.5:
-    #     data.angular.z *= 1.0
-    #     data.angular.z = round(data.angular.z, 2)
-    # else: 
-    #     data.angular.z *= 2.0
-    #     data.angular.z = round(data.angular.z, 2)
+    if data.linear.x == 0.0 and data.angular.z <= 0.9:
+        data.angular.z *= 5.0
+    else:
+        data.angular.z *= 2.5
+        data.angular.z = round(data.angular.z, 2)
 
     # 증폭된 메시지를 다시 cmd_vel 토픽으로 게시
     cmd_vel_publisher.publish(data)
