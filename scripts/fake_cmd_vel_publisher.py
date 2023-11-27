@@ -10,8 +10,18 @@ def cmd_vel_callback(data):
 
     elif data.linear.x == 0.0 and -2.5 <= data.angular.z < 0:
         data.angular.z = -2.8
+
+    elif 0 < data.linear.x < 0.2:
+        data.linear.x *= 3.0
+        data.angular.z *= 3.0
+
+        if data.angular.z > 3.3:
+            data.angular.z = 3.3
+        elif -3.3 > data.angular.z:
+            data.angular.z = -3.3
+
     else:
-        data.angular.z *= 2.5
+        data.angular.z *= 3.0
         data.angular.z = round(data.angular.z, 2)
         if data.angular.z > 3.3:
             data.angular.z = 3.3
