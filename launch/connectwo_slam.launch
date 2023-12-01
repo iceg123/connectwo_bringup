@@ -5,8 +5,8 @@
   <arg name="configuration_basename" default="footprint_lds_2d.lua"/>
   <arg name="open_rviz" default="true"/>
 
-  <!-- <include file="$(find connectwo_bringup)/launch/connectwo_keyboard.launch">
-  </include> -->
+  <include file="$(find connectwo_bringup)/launch/connectwo_keyboard.launch">
+  </include>
 
   <include file="$(find connectwo_bringup)/launch/connectwo_rplidar.launch">
   </include>

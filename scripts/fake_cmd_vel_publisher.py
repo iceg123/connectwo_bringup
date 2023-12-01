@@ -6,14 +6,18 @@ from geometry_msgs.msg import Twist
 def cmd_vel_callback(data):
     # 수신한 메시지에서 angular.z 값을 n배로 증폭
     if data.linear.x == 0.0 and 0 < data.angular.z <= 2.5:
-        data.angular.z = 2.8
+        data.angular.z = 3.5
 
     elif data.linear.x == 0.0 and -2.5 <= data.angular.z < 0:
-        data.angular.z = -2.8
+        data.angular.z = -3.5
 
-    elif 0 < data.linear.x < 0.2:
+    elif 0 < data.linear.x < 0.05:
         data.linear.x *= 3.0
-        data.angular.z *= 3.0
+        if 0 < data.angular.z <= 2.5:
+            data.angular.z = 2.8
+        elif -2.5 <= data.angular.z < 0:
+            data.angular.z = -2.8
+        
 
         if data.angular.z > 3.3:
             data.angular.z = 3.3
@@ -21,7 +25,7 @@ def cmd_vel_callback(data):
             data.angular.z = -3.3
 
     else:
-        data.angular.z *= 3.0
+        data.angular.z *= 3.3
         data.angular.z = round(data.angular.z, 2)
         if data.angular.z > 3.3:
             data.angular.z = 3.3

@@ -25,7 +25,7 @@
 
   <include file="$(find connectwo_bringup)/launch/connectwo_fake_odom.launch"/>
   
-  <!-- <include file="$(find connectwo_bringup)/launch/connectwo_fake_cmd_vel.launch"/> -->
+  <!-- <include file="$(find connectwo_bringup)/launch/connectwo_imu_to_odom.launch"/> -->
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
