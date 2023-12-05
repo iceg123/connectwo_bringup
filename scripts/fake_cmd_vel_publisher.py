@@ -25,6 +25,7 @@ def cmd_vel_callback(data):
             data.angular.z = -3.3
 
     else:
+        data.linear.x *= 1.1
         data.angular.z *= 3.3
         data.angular.z = round(data.angular.z, 2)
         if data.angular.z > 3.3:
